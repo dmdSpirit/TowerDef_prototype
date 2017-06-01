@@ -1,29 +1,15 @@
 fileFormatVersion: 2
-guid: 1c15ec14951adac4cb381d3370a29fe4
-timeCreated: 1496089905
+guid: 237b45510e1031a428bce9b2a5b4623e
+timeCreated: 1496325318
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Base
-    100004: Cube
-    100006: Stand
     400000: //RootNode
-    400002: Base
-    400004: Cube
-    400006: Stand
     2300000: //RootNode
-    2300002: Base
-    2300004: Cube
-    2300006: Stand
     3300000: //RootNode
-    3300002: Base
-    3300004: Cube
-    3300006: Stand
-    4300000: Base
-    4300002: Stand
-    4300004: Cube
+    4300000: Machine_Gun
   materials:
     importMaterials: 1
     materialName: 0
