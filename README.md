@@ -11,6 +11,8 @@
 
 ![Alt text](/Screenshots/Turret.jpg?raw=true "Turret")
 
+Turret created following steps from [Youtube Tutorial](https://www.youtube.com/watch?v=OhhYOTa-W_s).
+
 ### Current TODO:
 - [x] Add health/death
 	- [ ] Create enemy controller, handling deleting the enemy object on death. (Some animation later)
