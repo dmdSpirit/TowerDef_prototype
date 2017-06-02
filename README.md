@@ -7,6 +7,10 @@
 - 3 levels
 - 6 towers (2 types + 2 upgrades each)
 
+![Alt text](/Screenshots/Screenshot.jpg?raw=true "Screenshot")
+
+![Alt text](/Screenshots/Turret.jpg?raw=true "Turret")
+
 ### Current TODO:
 - [x] Add health/death
 	- [ ] Create enemy controller, handling deleting the enemy object on death. (Some animation later)
