@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Walking to the target, using NavMesh.
+/// </summary>
+
 [RequireComponent(typeof(NavMeshAgent))]
 public class WalkToTarget : MonoBehaviour {
 	GameObject finish;

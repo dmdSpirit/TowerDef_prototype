@@ -1,0 +1,24 @@
+------TODO-------
++ Add health/death
+	-- Create enemy controller, handling deleting the enemy object on death. (Some animation later)
+- Add shooting
+	-- Bullets flying. (Some animation/particles later)
+- UI
+	-- Add pause menu
+	-- Add level selection menu
+	-- Add Score UI
+	-- Add Health UI
+	-- Add reloading UI
+- Show tower attack radius
+- Building places
+- Building/upgrading UI
+
+
+--FINAL-PRODUCT--
+- 3 types of enemies
+- 3 levels
+- 6 towers (2 types + 2 upgrades each)
+
+
+------IDEAS------
+- Kingdom Rush mechanics (clone?)
