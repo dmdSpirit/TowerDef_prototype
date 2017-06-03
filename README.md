@@ -15,7 +15,7 @@ Turret created following steps from [Youtube Tutorial](https://www.youtube.com/w
 
 ### Current TODO:
 - [x] Add health/death
-	- [ ] Create enemy controller, handling deleting the enemy object on death. (Some animation later)
+	- [x] Create enemy controller, handling deleting the enemy object on death. (Some animation later)
 - [ ] Add shooting
 	- [ ] Bullets flying. (Some animation/particles later)
 - [ ] UI

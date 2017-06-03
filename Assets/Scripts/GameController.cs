@@ -8,7 +8,7 @@ using UnityEngine;
 
 // TODO: Remake into singleton
 public class GameController : MonoBehaviour {
-	public List<GameObject> unitsList;
+	static public List<GameObject> unitsList;
 
 	List<Spawn> spawnersList;
 
