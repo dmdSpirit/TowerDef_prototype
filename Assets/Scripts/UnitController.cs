@@ -8,9 +8,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class UnitController : MonoBehaviour {
+	public Transform shootingTarget;
+
 	void Start(){
 		Health unitHealth = GetComponent<Health> ();
 		unitHealth.OnDeath += OnUnitDeath;
+
+		shootingTarget = transform.Find ("Shooting Target");
+		if(shootingTarget == null)
+			Debug.LogError(gameObject.name+" :: Start - Shooting Target not found.");
 	}
 
 	void OnUnitDeath(GameObject deadUnitGO){

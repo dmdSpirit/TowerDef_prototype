@@ -27,13 +27,14 @@ public class TowerController : MonoBehaviour {
 				target = GetTarget();
 		}
 
-		if (target != null)
-			Debug.DrawLine (shootingBase.position, target.transform.position,Color.red);
+		if (target != null){
+			Transform unitTarget = target.GetComponent<UnitController> ().shootingTarget;
+			Debug.DrawLine (shootingBase.position, unitTarget.position,Color.red);
 
+		}
 	}
 
 	GameObject GetTarget(){
-		// FIXME: Get targets in range from global Dictionary in "Game Controller"
 		float distance = Mathf.Infinity;
 		GameObject newTarget = null;
 		foreach(GameObject enemyUnit in GameController.unitsList){
