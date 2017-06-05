@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Tower controller. Choosing targets.
@@ -9,16 +10,38 @@ using UnityEngine;
 
 // TODO: Control the tower object depending on what tower is actually build. Different components?
 public class TowerController : MonoBehaviour {
-	GameObject target;
-
 	// TODO: Implement Range Circle resizing, when shootingRange is changed.
 	public float shootingRange = 3f;
+	public event Action<GameObject> onTowerClicked;
+
+	public bool IsSelected {
+		get { return isSelected;}
+		set { 
+			isSelected = value;
+			rangeProjector.enabled = value;
+		}
+	}
+
+	bool isSelected = false;
 
 	Transform shootingBase;
+	GameObject target;
+	Projector rangeProjector;
 
 	void Start(){
 		shootingBase = transform.Find("Shooting Base");
-		if(shootingBase == null) Debug.LogError(gameObject.name + " :: Start - Shooting base child not found.");
+		if(shootingBase == null) Debug.LogError(gameObject.name + " :: Start - Shooting Base child not found.");
+
+		Transform rangeProjectorTransform = transform.Find("Range Projector");
+		if(rangeProjectorTransform == null)
+			Debug.LogError(gameObject.name + " :: Start - Range Projector child not found.");
+		else{
+			Projector rngProjector = rangeProjectorTransform.GetComponent<Projector> ();
+			if (rngProjector == null) {
+				Debug.LogError (gameObject.name + " :: Start - Range Projector does not have Projector component.");
+			} else
+				rangeProjector = rngProjector;
+		}
 	}
 
 	void Update(){
@@ -41,6 +64,10 @@ public class TowerController : MonoBehaviour {
 	GameObject GetTarget(){
 		float distance = Mathf.Infinity;
 		GameObject newTarget = null;
+		if (GameController.unitsList == null) {
+			//Debug.LogError (gameObject.name + " :: GetTarget - GameController unitsList not found");
+			return null;
+		}
 		foreach(GameObject enemyUnit in GameController.unitsList){
 			float newDistance = Vector3.Distance (transform.position, enemyUnit.transform.position);
 			if( newDistance <= distance){
@@ -52,5 +79,11 @@ public class TowerController : MonoBehaviour {
 			return newTarget;
 		else
 			return null;
+	}
+
+	public void OnClick(){
+		Debug.Log (gameObject.name + " :: OnClick");
+		if (onTowerClicked != null)
+			onTowerClicked (gameObject);
 	}
 }
