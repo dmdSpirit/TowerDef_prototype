@@ -1,5 +1,6 @@
 ## Tower Defence game prototype.
  Just trying things out. Experimenting with game mechanics, ideas and looks.
+ 
  Goal - finished prototype, that can be added to my portfolio.
 
 ### Final Product MVP
@@ -24,13 +25,9 @@ Turret created following steps from [Youtube Tutorial](https://www.youtube.com/w
 	- [ ] Add Score UI
 	- [ ] Add Health UI
 	- [ ] Add reloading UI
-- [ ] Show tower attack radius
+- [x] Show tower attack radius
 - [ ] Building places
 - [ ] Building/upgrading UI
-
-- 3 types of enemies
-- 3 levels
-- 6 towers (2 types + 2 upgrades each)
 
 ### Some ideas to try:
 - Kingdom Rush mechanics (clone?)
