@@ -6,8 +6,12 @@ using UnityEngine;
 /// Tower controller. Choosing targets.
 /// </summary>
 
+
+// TODO: Control the tower object depending on what tower is actually build. Different components?
 public class TowerController : MonoBehaviour {
-	public GameObject target;
+	GameObject target;
+
+	// TODO: Implement Range Circle resizing, when shootingRange is changed.
 	public float shootingRange = 3f;
 
 	Transform shootingBase;
