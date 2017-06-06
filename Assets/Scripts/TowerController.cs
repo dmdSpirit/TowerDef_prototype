@@ -28,11 +28,27 @@ public class TowerController : MonoBehaviour {
 	GameObject target;
 	Projector rangeProjector;
 
+	public GameObject towerModel;
+	public int towerLevel=0;
+
 	void Start(){
-		shootingBase = transform.Find("Shooting Base");
+		if(towerModel == null){
+			Debug.LogError (gameObject.name + " :: Start  - towerModel is not set.");
+			return;
+		}
+
+		// FIXME: Set child with model by script
+		// TODO: Change collider when model is changed
+		// FIXME: Separate code handling tower model to TowerModelContoroller
+
+		// FIXME: I will assume that 1 lvl tower is base only and does not have Shooting Base or Range Projector
+		if (towerLevel == 0)
+			return;
+
+		shootingBase = towerModel.transform.Find("Shooting Base");
 		if(shootingBase == null) Debug.LogError(gameObject.name + " :: Start - Shooting Base child not found.");
 
-		Transform rangeProjectorTransform = transform.Find("Range Projector");
+		Transform rangeProjectorTransform = towerModel.transform.Find("Range Projector");
 		if(rangeProjectorTransform == null)
 			Debug.LogError(gameObject.name + " :: Start - Range Projector child not found.");
 		else{
