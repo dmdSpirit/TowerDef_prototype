@@ -70,7 +70,7 @@ public class TowerController : MonoBehaviour {
 				target = GetTarget();
 		}
 
-		if (target != null){
+		if (target != null && shootingBase != null){
 			Transform unitTarget = target.GetComponent<UnitController> ().shootingTarget;
 			Debug.DrawLine (shootingBase.position, unitTarget.position,Color.red);
 

@@ -35,12 +35,22 @@ public class TowerModelController : MonoBehaviour {
 	// FIXME: Change collider size
 	void ChangeColliderSize(){
 		Bounds b = new Bounds ();
+		bool hasBounds = false;
 		foreach(Transform t in TowerModel.transform){
 			MeshRenderer mr = t.GetComponent<MeshRenderer> ();
-			if(mr != null)
-				b.Encapsulate(mr.bounds);
+			if (mr != null) {
+				if(hasBounds)
+					b.Encapsulate (mr.bounds);
+				else{
+					b = mr.bounds;
+					hasBounds = true;
+				}
+			}
 		}
 		BoxCollider bc = GetComponent<BoxCollider> ();
+		Debug.Log ("Bounds center: " + b.center);
+		Debug.Log ("Bounds size: " + b.size);
+		Debug.Log ("transform center: " + transform.position);
 		bc.size = b.size;
 		bc.center = b.center - transform.position;
 	}
