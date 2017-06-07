@@ -21,7 +21,7 @@ public class Shoot : MonoBehaviour {
 	void Update(){
 		timePassed += Time.deltaTime;
 		if(timePassed >= shootingCD){
-			// TODO: Add bullet creation
+			// TODO: Add bullet creation.
 			timePassed = 0;
 		}
 	}

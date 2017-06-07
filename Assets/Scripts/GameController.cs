@@ -6,7 +6,7 @@ using UnityEngine;
 /// Game controller. Handles units list.
 /// </summary>
 
-// TODO: Remake into singleton
+// TODO: Remake into singleton.
 public class GameController : MonoBehaviour {
 	static public List<GameObject> unitsList;
 

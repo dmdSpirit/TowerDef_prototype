@@ -1,21 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+/// <summary>
+/// Handles tower model as child object of parent Tower.
+/// </summary>
 
 public class TowerModelController : MonoBehaviour {
 	public GameObject TowerModel{
-		get { return towerModel;}
+		get { return _towerModel;}
 		set {
-			if (towerModel != value) {
-				towerModel = value;
+			if (_towerModel != value) {
+				_towerModel = value;
 				ChangeColliderSize ();
-
+				if (onModelChanged != null)
+					onModelChanged ();
 			}
 		}
 	}
+	GameObject _towerModel;
 
-	GameObject towerModel;
-	int towerLevel;
+	public int towerLevel { get; protected set;}
+	public event Action onModelChanged;
 
 
 	void Start(){
@@ -32,7 +39,8 @@ public class TowerModelController : MonoBehaviour {
 		TowerModel = modelTransform.gameObject;
 	}
 
-	// FIXME: Change collider size
+	// FIXME: Refactor me.
+	// FIXME: Fix collider size when object is rotated.
 	void ChangeColliderSize(){
 		Bounds b = new Bounds ();
 		bool hasBounds = false;
@@ -48,10 +56,9 @@ public class TowerModelController : MonoBehaviour {
 			}
 		}
 		BoxCollider bc = GetComponent<BoxCollider> ();
-		Debug.Log ("Bounds center: " + b.center);
-		Debug.Log ("Bounds size: " + b.size);
-		Debug.Log ("transform center: " + transform.position);
 		bc.size = b.size;
 		bc.center = b.center - transform.position;
 	}
+
+	// TODO: Add ChangeModel.
 }

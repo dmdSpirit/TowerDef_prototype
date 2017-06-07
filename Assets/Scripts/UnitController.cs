@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Unit death animation, unit behavior
+/// Unit death animation, unit behavior.
 /// </summary>
 
 [RequireComponent(typeof(Health))]
 public class UnitController : MonoBehaviour {
 	public Transform shootingTarget;
+
+	WalkToTarget walkToTarget;
 
 	void Start(){
 		Health unitHealth = GetComponent<Health> ();
@@ -17,14 +19,27 @@ public class UnitController : MonoBehaviour {
 		shootingTarget = transform.Find ("Shooting Target");
 		if(shootingTarget == null)
 			Debug.LogError(gameObject.name+" :: Start - Shooting Target not found.");
+
+		// Subscribe to onFinish event.
+		walkToTarget = GetComponent<WalkToTarget>();
+		if (walkToTarget != null)
+			walkToTarget.onFinish += OnFinish;
 	}
 
-	void OnUnitDeath(GameObject deadUnitGO){
+	public void OnUnitDeath(GameObject deadUnitGO){
 		if(deadUnitGO != gameObject){
 			Debug.LogError(gameObject.name + " :: OnUnitDeath - Got death event from other unit.");
 			return;
 		}
-		// TODO: Add unit death animation
+		// TODO: Add unit death animation.
 		Destroy (gameObject);
+	}
+
+	void OnFinish(GameObject finishedGameObject){
+		if (finishedGameObject != gameObject)
+			Debug.LogError (gameObject.name + " :: OnFinish - event from wrong Game Object.");
+		OnUnitDeath (finishedGameObject);
+
+		// TODO: Implement damage to the core event.
 	}
 }

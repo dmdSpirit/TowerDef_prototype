@@ -8,7 +8,7 @@ using System;
 /// </summary>
 
 public class Spawn : MonoBehaviour {
-	// TODO: Spawn enemies from a list
+	// TODO: Spawn enemies from a list.
 	public GameObject enemyPrefab;
 	public float spawnTime = 3;
 

@@ -14,7 +14,7 @@ public class MouseController : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit rayHit;
 			if(Physics.Raycast(ray, out rayHit, 100, isClickable)){
-				Debug.Log ("Mouse clicked on " + rayHit.collider.gameObject.name);
+				// Debug.Log ("Mouse clicked on " + rayHit.collider.gameObject.name);
 				TowerController towerClicked = rayHit.collider.gameObject.GetComponent<TowerController>();
 				if (towerClicked != null)
 					towerClicked.OnClick ();

@@ -15,49 +15,31 @@ public class TowerController : MonoBehaviour {
 	public event Action<GameObject> onTowerClicked;
 
 	public bool IsSelected {
-		get { return isSelected;}
+		get { return _isSelected;}
 		set { 
-			isSelected = value;
+			_isSelected = value;
 			rangeProjector.enabled = value;
 		}
 	}
-
-	bool isSelected = false;
+	bool _isSelected = false;
 
 	Transform shootingBase;
 	GameObject target;
 	Projector rangeProjector;
+	TowerModelController towerModelController;
 
-	public GameObject towerModel;
-	public int towerLevel=0;
+	// FIXME: ONLY FOR TESTING.
+	public GameObject t_towerModel0;
+	public GameObject t_towerModel1;
 
 	void Start(){
-		if(towerModel == null){
-			Debug.LogError (gameObject.name + " :: Start  - towerModel is not set.");
+		towerModelController = GetComponent<TowerModelController> ();
+		if(towerModelController == null){
+			Debug.LogError (gameObject.name + " :: Start  - towerModelController is missing.");
 			return;
 		}
-
-		// FIXME: Set child with model by script
-		// TODO: Change collider when model is changed
-		// FIXME: Separate code handling tower model to TowerModelContoroller
-
-		// FIXME: I will assume that 1 lvl tower is base only and does not have Shooting Base or Range Projector
-		if (towerLevel == 0)
-			return;
-
-		shootingBase = towerModel.transform.Find("Shooting Base");
-		if(shootingBase == null) Debug.LogError(gameObject.name + " :: Start - Shooting Base child not found.");
-
-		Transform rangeProjectorTransform = towerModel.transform.Find("Range Projector");
-		if(rangeProjectorTransform == null)
-			Debug.LogError(gameObject.name + " :: Start - Range Projector child not found.");
-		else{
-			Projector rngProjector = rangeProjectorTransform.GetComponent<Projector> ();
-			if (rngProjector == null) {
-				Debug.LogError (gameObject.name + " :: Start - Range Projector does not have Projector component.");
-			} else
-				rangeProjector = rngProjector;
-		}
+		towerModelController.onModelChanged += OnModelChanged;
+		OnModelChanged ();
 	}
 
 	void Update(){
@@ -81,7 +63,6 @@ public class TowerController : MonoBehaviour {
 		float distance = Mathf.Infinity;
 		GameObject newTarget = null;
 		if (GameController.unitsList == null) {
-			//Debug.LogError (gameObject.name + " :: GetTarget - GameController unitsList not found");
 			return null;
 		}
 		foreach(GameObject enemyUnit in GameController.unitsList){
@@ -98,8 +79,47 @@ public class TowerController : MonoBehaviour {
 	}
 
 	public void OnClick(){
+		// TODO: Implement selection.
+		// TODO: Implement selection shader.
 		Debug.Log (gameObject.name + " :: OnClick");
+		t_BuildOnClick ();
 		if (onTowerClicked != null)
 			onTowerClicked (gameObject);
+	}
+
+	// Reset rangeProjector transform and shootingBase based on new model.
+	void OnModelChanged(){
+		if(towerModelController == null){
+			Debug.LogError (gameObject.name + " :: OnModelChanged  - towerModelController is missing.");
+			return;
+		}
+		// FIXME: I will assume that 0 lvl tower is base only and does not have Shooting Base or Range Projector.
+		if (towerModelController.towerLevel > 0) {
+			shootingBase = towerModelController.TowerModel.transform.Find ("Shooting Base");
+			if (shootingBase == null)
+				Debug.LogError (gameObject.name + " :: Start - Shooting Base child not found.");
+
+			Transform rangeProjectorTransform = towerModelController.TowerModel.transform.Find ("Range Projector");
+			if (rangeProjectorTransform == null)
+				Debug.LogError (gameObject.name + " :: Start - Range Projector child not found.");
+			else {
+				Projector rngProjector = rangeProjectorTransform.GetComponent<Projector> ();
+				if (rngProjector == null) {
+					Debug.LogError (gameObject.name + " :: Start - Range Projector does not have Projector component.");
+				} else
+					rangeProjector = rngProjector;
+			}
+		}
+		else if(towerModelController.towerLevel ==0){
+			shootingBase = null;
+			rangeProjector = null;
+		}
+	}
+
+	void t_BuildOnClick(){
+		if (towerModelController.towerLevel == 0)
+			towerModelController.TowerModel = t_towerModel1;
+		else
+			towerModelController.TowerModel = t_towerModel0;
 	}
 }
