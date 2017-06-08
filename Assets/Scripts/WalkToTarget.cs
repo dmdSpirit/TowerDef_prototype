@@ -11,6 +11,7 @@ using System;
 [RequireComponent(typeof(NavMeshAgent))]
 public class WalkToTarget : MonoBehaviour {
 	public GameObject finish;
+	// TODO: Get finish range from finish object.
 	public float finishRange = 0.1f;
 	public event Action<GameObject> onFinish;
 

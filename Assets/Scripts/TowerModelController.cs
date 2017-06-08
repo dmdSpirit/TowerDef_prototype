@@ -14,16 +14,21 @@ public class TowerModelController : MonoBehaviour {
 			if (_towerModel != value) {
 				_towerModel = value;
 				ChangeColliderSize ();
+				// TODO: Parse level from model name
 				if (onModelChanged != null)
 					onModelChanged ();
 			}
 		}
 	}
+	[SerializeField] //FIXME: For testing.
 	GameObject _towerModel;
 
 	public int towerLevel { get; protected set;}
 	public event Action onModelChanged;
 
+	// FIXME: ONLY FOR TESTING.
+	public GameObject t_towerModel0;
+	public GameObject t_towerModel1;
 
 	void Start(){
 		Transform modelTransform = transform.GetChild (0);
@@ -41,6 +46,7 @@ public class TowerModelController : MonoBehaviour {
 
 	// FIXME: Refactor me.
 	// FIXME: Fix collider size when object is rotated.
+	// FIXME: Bounds not doing good. May be depent on the fact it is alway box collider and just code the calculation.
 	void ChangeColliderSize(){
 		Bounds b = new Bounds ();
 		bool hasBounds = false;
@@ -61,4 +67,19 @@ public class TowerModelController : MonoBehaviour {
 	}
 
 	// TODO: Add ChangeModel.
+	public void t_ChangeModel(){
+		if (towerLevel == 0) {
+			towerLevel = 1;
+			Destroy (transform.GetChild (0).gameObject);
+			TowerModel = Instantiate (t_towerModel1, transform);
+			TowerModel.name = "Tower 1";
+
+		} else {
+			towerLevel = 0;
+			Destroy (transform.GetChild (0).gameObject);
+			TowerModel = Instantiate (t_towerModel0, transform);
+			TowerModel.name = "Tower 0";
+
+		}
+	}
 }

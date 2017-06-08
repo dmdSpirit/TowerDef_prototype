@@ -38,7 +38,8 @@ public class GameController : MonoBehaviour {
 			TowerController newTower = tower.GetComponent<TowerController> ();
 			if (newTower != null) {
 				towersList.Add (newTower);
-				newTower.onTowerClicked += OnTowerClicked;
+				// FIXME: For testing.
+				//newTower.onTowerClicked += OnTowerClicked;
 			}
 		}
 		if(spawnersList.Count == 0)
@@ -47,18 +48,22 @@ public class GameController : MonoBehaviour {
 
 	void OnUnitSpawn(GameObject spawnedUnitGO){
 		Health spawnedUnitHealth = spawnedUnitGO.GetComponent<Health> ();
-
+		WalkToTarget walkToTarget = spawnedUnitGO.GetComponent<WalkToTarget> ();
 		// Every unit must have Health script attached
-		if(spawnedUnitHealth != null){ 
+		if(spawnedUnitHealth != null && walkToTarget != null){ 
 			unitsList.Add (spawnedUnitGO);
-			spawnedUnitHealth.OnDeath += OnUnitDeath;
+			spawnedUnitHealth.OnDeath += RemoveUnitFromList;
+			walkToTarget.onFinish += RemoveUnitFromList;
 		}
-		else{
+		else if(spawnedUnitHealth == null){
 			Debug.LogError ("Spawned unit " + spawnedUnitGO.name + " does not have Heath script attached!");
+		}
+		else if(walkToTarget == null){
+			Debug.LogError ("Spawned unit " + spawnedUnitGO.name + " does not have WalkToTarget script attached!");
 		}
 	}
 
-	void OnUnitDeath(GameObject deadUnitGO){
+	void RemoveUnitFromList(GameObject deadUnitGO){
 		unitsList.Remove (deadUnitGO);
 	}
 

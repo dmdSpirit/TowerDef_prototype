@@ -28,9 +28,6 @@ public class TowerController : MonoBehaviour {
 	Projector rangeProjector;
 	TowerModelController towerModelController;
 
-	// FIXME: ONLY FOR TESTING.
-	public GameObject t_towerModel0;
-	public GameObject t_towerModel1;
 
 	void Start(){
 		towerModelController = GetComponent<TowerModelController> ();
@@ -97,17 +94,20 @@ public class TowerController : MonoBehaviour {
 		if (towerModelController.towerLevel > 0) {
 			shootingBase = towerModelController.TowerModel.transform.Find ("Shooting Base");
 			if (shootingBase == null)
-				Debug.LogError (gameObject.name + " :: Start - Shooting Base child not found.");
+				Debug.LogError (gameObject.name + " :: OnModelChanged - Shooting Base child not found.");
 
 			Transform rangeProjectorTransform = towerModelController.TowerModel.transform.Find ("Range Projector");
 			if (rangeProjectorTransform == null)
-				Debug.LogError (gameObject.name + " :: Start - Range Projector child not found.");
+				Debug.LogError (gameObject.name + " :: OnModelChanged - Range Projector child not found.");
 			else {
 				Projector rngProjector = rangeProjectorTransform.GetComponent<Projector> ();
 				if (rngProjector == null) {
-					Debug.LogError (gameObject.name + " :: Start - Range Projector does not have Projector component.");
-				} else
+					Debug.LogError (gameObject.name + " :: OnModelChanged - Range Projector does not have Projector component.");
+				} else {
 					rangeProjector = rngProjector;
+					// FIXME: For testing.
+					rangeProjector.enabled = true;
+				}
 			}
 		}
 		else if(towerModelController.towerLevel ==0){
@@ -117,9 +117,6 @@ public class TowerController : MonoBehaviour {
 	}
 
 	void t_BuildOnClick(){
-		if (towerModelController.towerLevel == 0)
-			towerModelController.TowerModel = t_towerModel1;
-		else
-			towerModelController.TowerModel = t_towerModel0;
+		towerModelController.t_ChangeModel ();
 	}
 }
