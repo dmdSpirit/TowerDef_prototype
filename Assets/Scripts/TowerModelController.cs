@@ -23,6 +23,7 @@ public class TowerModelController : MonoBehaviour {
 	[SerializeField] //FIXME: For testing.
 	GameObject _towerModel;
 
+	public Vector3 towerCenter { get; protected set;}
 	public int towerLevel { get; protected set;}
 	public event Action onModelChanged;
 
@@ -42,6 +43,7 @@ public class TowerModelController : MonoBehaviour {
 		}
 		towerLevel = int.Parse (modelTransform.name.Substring (6));
 		TowerModel = modelTransform.gameObject;
+		towerCenter = new Vector3 ();
 	}
 
 	// FIXME: Refactor me.
@@ -64,10 +66,11 @@ public class TowerModelController : MonoBehaviour {
 		BoxCollider bc = GetComponent<BoxCollider> ();
 		bc.size = b.size;
 		bc.center = b.center - transform.position;
+		towerCenter = bc.center;
 	}
 
 	// TODO: Add ChangeModel.
-	public void t_ChangeModel(){
+	/*public void t_ChangeModel(){
 		if (towerLevel == 0) {
 			towerLevel = 1;
 			Destroy (transform.GetChild (0).gameObject);
@@ -81,5 +84,5 @@ public class TowerModelController : MonoBehaviour {
 			TowerModel.name = "Tower 0";
 
 		}
-	}
+	}*/
 }

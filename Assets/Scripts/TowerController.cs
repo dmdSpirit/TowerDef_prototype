@@ -13,12 +13,16 @@ public class TowerController : MonoBehaviour {
 	// TODO: Implement Range Circle resizing, when shootingRange is changed.
 	public float shootingRange = 3f;
 	public event Action<GameObject> onTowerClicked;
+	public event Action<TowerController> onTowerSelected;
 
 	public bool IsSelected {
 		get { return _isSelected;}
 		set { 
 			_isSelected = value;
-			rangeProjector.enabled = value;
+			if (rangeProjector != null)
+				rangeProjector.enabled = value;
+			if (_isSelected && onTowerSelected != null)
+				onTowerSelected (this);
 		}
 	}
 	bool _isSelected = false;
@@ -79,7 +83,6 @@ public class TowerController : MonoBehaviour {
 		// TODO: Implement selection.
 		// TODO: Implement selection shader.
 		Debug.Log (gameObject.name + " :: OnClick");
-		t_BuildOnClick ();
 		if (onTowerClicked != null)
 			onTowerClicked (gameObject);
 	}
@@ -105,8 +108,6 @@ public class TowerController : MonoBehaviour {
 					Debug.LogError (gameObject.name + " :: OnModelChanged - Range Projector does not have Projector component.");
 				} else {
 					rangeProjector = rngProjector;
-					// FIXME: For testing.
-					rangeProjector.enabled = true;
 				}
 			}
 		}
@@ -116,7 +117,12 @@ public class TowerController : MonoBehaviour {
 		}
 	}
 
-	void t_BuildOnClick(){
-		towerModelController.t_ChangeModel ();
+	public Vector3 GetTowerCenter(){
+		Vector3 towerCenter = new Vector3 ();
+		if(towerModelController == null){
+			Debug.LogError(gameObject.name + " :: GetTowerCenter - towerModelController is missing");
+			return towerCenter;
+		}
+		return towerModelController.towerCenter;
 	}
 }

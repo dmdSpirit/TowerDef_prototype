@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	List<TowerController> towersList;
 
 	TowerController selectedTower;
+	BuildingMenuController buildingMenuController;
 
 	void Start(){
 		unitsList = new List<GameObject> ();
@@ -30,7 +31,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 		if(spawnersList.Count == 0)
-			Debug.LogWarning("GameController :: Start - not spawners found.");
+			Debug.LogWarning("GameController :: Start - No spawners found.");
 
 		//Get towers list
 		GameObject[] towers = GameObject.FindGameObjectsWithTag ("Tower");
@@ -38,12 +39,25 @@ public class GameController : MonoBehaviour {
 			TowerController newTower = tower.GetComponent<TowerController> ();
 			if (newTower != null) {
 				towersList.Add (newTower);
-				// FIXME: For testing.
-				//newTower.onTowerClicked += OnTowerClicked;
+				newTower.onTowerClicked += OnTowerClicked;
 			}
 		}
 		if(spawnersList.Count == 0)
-			Debug.LogWarning("GameController :: Start - not spawners found.");
+			Debug.LogWarning("GameController :: Start - No towers found.");
+
+		// Get buildingMenuController
+		// TODO: Make buildingMenuController singleton.
+		GameObject buildingMenuGO = GameObject.FindGameObjectWithTag("UI");
+		if(buildingMenuGO == null)
+			Debug.LogError(gameObject.name+" :: Start - Could not find Building Menu");
+		else{
+			buildingMenuController = buildingMenuGO.GetComponent<BuildingMenuController> ();
+			if (buildingMenuController == null)
+				Debug.LogError (gameObject.name + " :: Start - "+buildingMenuGO.name+" does not have BuildingMenuController component attached");
+			else
+				foreach (TowerController towerController in towersList)
+					towerController.onTowerSelected += buildingMenuController.OnTowerSelected;
+		}
 	}
 
 	void OnUnitSpawn(GameObject spawnedUnitGO){

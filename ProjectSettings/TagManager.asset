@@ -7,6 +7,7 @@ TagManager:
   - Spawner
   - Shooting Base
   - Tower
+  - UI
   layers:
   - Default
   - TransparentFX
