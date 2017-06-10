@@ -67,9 +67,27 @@ public class TowerModelController : MonoBehaviour {
 		bc.size = b.size;
 		bc.center = b.center - transform.position;
 		towerCenter = bc.center;
+		Debug.Log (gameObject.name + " :: ChangeColliderSize - Tower Center = " + towerCenter);
 	}
 
 	// TODO: Add ChangeModel.
+	public void BuildTowerToLevel(int level){
+		if (towerLevel == level)
+			return;
+		GameObject newTowerModelPrefab;
+		String newTowerModelName = "Tower ";
+		if(level == 1){
+			newTowerModelPrefab = t_towerModel1;
+		}
+		else{
+			newTowerModelPrefab = t_towerModel0;
+		}
+		Destroy (transform.Find(newTowerModelName+towerLevel).gameObject);
+		towerLevel = level;
+		TowerModel = Instantiate (newTowerModelPrefab, transform);
+		TowerModel.name = newTowerModelName+towerLevel;
+	}
+
 	/*public void t_ChangeModel(){
 		if (towerLevel == 0) {
 			towerLevel = 1;

@@ -125,4 +125,9 @@ public class TowerController : MonoBehaviour {
 		}
 		return towerModelController.towerCenter;
 	}
+
+	// Wrap Tower Model Controller function .
+	public void BuildTower(int level){
+		towerModelController.BuildTowerToLevel(level);
+	}
 }

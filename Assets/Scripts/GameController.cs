@@ -15,7 +15,9 @@ public class GameController : MonoBehaviour {
 
 	TowerController selectedTower;
 	BuildingMenuController buildingMenuController;
+	MouseController mouseController;
 
+	// FIXME: Becoming way too big, refactor.
 	void Start(){
 		unitsList = new List<GameObject> ();
 		spawnersList = new List<Spawn> ();
@@ -57,6 +59,15 @@ public class GameController : MonoBehaviour {
 			else
 				foreach (TowerController towerController in towersList)
 					towerController.onTowerSelected += buildingMenuController.OnTowerSelected;
+		}
+
+		// Get mouseController
+		mouseController = FindObjectOfType<MouseController>();
+		if(mouseController == null){
+			Debug.LogError(gameObject.name+" :: Start - Could not find Mouse Controller component.");
+		}
+		else{
+			mouseController.unselectEverything += buildingMenuController.HideMenu;
 		}
 	}
 

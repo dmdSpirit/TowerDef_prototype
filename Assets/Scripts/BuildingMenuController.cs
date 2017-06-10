@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class BuildingMenuController : MonoBehaviour {
 	TowerController selectedTowerController;
 	GameObject buildingMenu;
+	Dictionary<Button,int> buildButtonsList;
+
+	// FIXME: Remove hardcoded coordinates.
+	public Vector3 defaultPosition;
+
+	// TODO: Unselect Tower event.
 
 	bool ShowMenu {
 		get{
@@ -22,12 +28,23 @@ public class BuildingMenuController : MonoBehaviour {
 	bool _showMenu;
 
 	void Start(){
+		buildButtonsList = new Dictionary<Button, int> ();
+		defaultPosition = new Vector3 (-3, 2.7f, -3);
 		Transform buildingMenuTransform = transform.Find("Building Menu");
 		if(buildingMenuTransform == null)
 			Debug.LogError(gameObject.name +" :: Start - Could not find Building Menu child");
 		else{
 			buildingMenu = buildingMenuTransform.gameObject;
+			int num = 0;
+			foreach(Transform buttonTranfsorm in buildingMenu.transform){
+				Button button = buttonTranfsorm.GetComponent<Button> ();
+				if(button != null){
+					buildButtonsList.Add (button, num);
+					num++;
+				}
+			}
 		}
+		ShowMenu = false;
 	}
 
 	// FIXME: Hide Building Menu when no towers seleted.
@@ -36,13 +53,26 @@ public class BuildingMenuController : MonoBehaviour {
 			Debug.LogError(gameObject.name +" :: OnTowerSelected - Building Menu is missing");
 		selectedTowerController = towerSelected;
 		ShowMenu = true;
+
 		// Reposition Building Menu to the center of selected tower.
-		Vector2 newBuildMenuPosition;
-		newBuildMenuPosition = Camera.main.WorldToViewportPoint(towerSelected.GetTowerCenter());
-		Debug.Log ("OnTowerSelected :: Selected Tower Screen Position: " + newBuildMenuPosition);
-		buildingMenu.GetComponent<RectTransform> ().anchoredPosition = newBuildMenuPosition;
-		//buildingMenu.transform.position = new Vector3(newBuildMenuPosition.x, newBuildMenuPosition.y, buildingMenu.transform.position.z);
+		transform.SetParent(towerSelected.transform, false);
+		transform.localPosition = defaultPosition;
+		transform.localPosition += towerSelected.GetTowerCenter ();
+
+		// Reassign Buttons onClick.
+		foreach(KeyValuePair<Button, int> button in buildButtonsList){
+			button.Key.onClick.RemoveAllListeners ();
+			button.Key.onClick.AddListener (() => selectedTowerController.BuildTower (button.Value));
+			button.Key.onClick.AddListener (HideMenu);
+		}
 	}
 
-
+	// When tower gets unselected, hide menu.
+	public void HideMenu(){
+		ShowMenu = false;
+		foreach (KeyValuePair<Button, int> button in buildButtonsList)
+			button.Key.onClick.RemoveAllListeners ();
+		transform.SetParent (null);
+		transform.position = defaultPosition;
+	}
 }
