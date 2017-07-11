@@ -7,22 +7,31 @@ using UnityEngine;
 /// </summary>
 
 public class Shoot : MonoBehaviour {
-	public GameObject target; // FIXME: Get the target from controlling script.
 	public GameObject bulletPrefab; // FIXME: Set by controlling script.
-	public float shootingCD = 1f;
-	public float damage = 1f;
+	public float shootingCD = 0.2f;
+	public float bulletDamage = 1f;
+	public float bulletSpeed = 6f;
 
 	float timePassed;
+	TowerController towerController;
 
 	void Start(){
 		timePassed = 0;
+		shootingCD = 0.2f;
+		bulletDamage = 1f;
+		bulletSpeed = 8f;
+		towerController = GetComponent<TowerController> ();
 	}
 
 	void Update(){
 		timePassed += Time.deltaTime;
-		if(timePassed >= shootingCD){
-			// TODO: Add bullet creation.
-			timePassed = 0;
+		if(timePassed >= shootingCD && towerController.target != null && towerController.shootingBase!=null){
+			UnitController unitController = towerController.target.GetComponent<UnitController> ();
+			if (unitController != null) {
+				GameObject newBullet = Instantiate (bulletPrefab, towerController.shootingBase.position, Quaternion.identity);
+				newBullet.GetComponent<BulletController> ().Init (unitController, bulletSpeed, bulletDamage);
+				timePassed = 0;
+			}
 		}
 	}
 }

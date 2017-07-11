@@ -165,10 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e92e17334802af2409a6c95d74f578d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1209806677858226, guid: 1e16ac5c371c50843b86c9b935134e6d,
+    type: 2}
   shootingCD: 1
-  damage: 1
+  bulletDamage: 1
+  bulletSpeed: 10
 --- !u!114 &114454319762518704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,3 +198,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingRange: 3
+  shootingBase: {fileID: 0}
+  target: {fileID: 0}

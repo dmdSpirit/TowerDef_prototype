@@ -27,8 +27,8 @@ public class TowerController : MonoBehaviour {
 	}
 	bool _isSelected = false;
 
-	Transform shootingBase;
-	GameObject target;
+	public Transform shootingBase;
+	public GameObject target;
 	Projector rangeProjector;
 	TowerModelController towerModelController;
 
@@ -55,7 +55,7 @@ public class TowerController : MonoBehaviour {
 
 		if (target != null && shootingBase != null){
 			Transform unitTarget = target.GetComponent<UnitController> ().shootingTarget;
-			Debug.DrawLine (shootingBase.position, unitTarget.position,Color.red);
+			//Debug.DrawLine (shootingBase.position, unitTarget.position,Color.red);
 
 		}
 	}
@@ -82,7 +82,7 @@ public class TowerController : MonoBehaviour {
 	public void OnClick(){
 		// TODO: Implement selection.
 		// TODO: Implement selection shader.
-		Debug.Log (gameObject.name + " :: OnClick");
+		//Debug.Log (gameObject.name + " :: OnClick");
 		if (onTowerClicked != null)
 			onTowerClicked (gameObject);
 	}

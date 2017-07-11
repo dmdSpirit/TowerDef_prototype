@@ -8,6 +8,7 @@ TagManager:
   - Shooting Base
   - Tower
   - UI
+  - Enemy
   layers:
   - Default
   - TransparentFX

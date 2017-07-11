@@ -67,7 +67,7 @@ public class TowerModelController : MonoBehaviour {
 		bc.size = b.size;
 		bc.center = b.center - transform.position;
 		towerCenter = bc.center;
-		Debug.Log (gameObject.name + " :: ChangeColliderSize - Tower Center = " + towerCenter);
+		//Debug.Log (gameObject.name + " :: ChangeColliderSize - Tower Center = " + towerCenter);
 	}
 
 	// TODO: Add ChangeModel.
