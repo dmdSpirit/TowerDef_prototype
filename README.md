@@ -12,6 +12,8 @@
 
 ![Alt text](/Screenshots/Turret.jpg?raw=true "Turret")
 
+![Alt text](/Screenshots/Peasant.jpg?raw=true "Peasant")
+
 Turret created following steps from [Youtube Tutorial](https://www.youtube.com/watch?v=OhhYOTa-W_s).
 
 ### Current TODO:
