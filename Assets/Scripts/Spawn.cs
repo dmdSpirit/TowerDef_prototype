@@ -11,6 +11,7 @@ public class Spawn : MonoBehaviour {
 	// TODO: Spawn enemies from a list.
 	public GameObject enemyPrefab;
 	public float spawnTime = 3;
+	// TODO: Set finish point from spawn.
 
 	public event Action<GameObject> OnSpawn;
 
