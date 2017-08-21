@@ -1,36 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour {
-	public bool borderPan = false;
-	public float panSpeed = 20f;
-	public float panBorderThikness = 15f;
-	public float scrollSpeed = 200f;
-	// TODO: Add visual representation of camera movement borders.
-	public Rect panLimit;
-	public Vector2 scrollLimit;
-	
+/// <summary>
+/// Move Camera using WASD keys, zoom with scroll wheel.
+/// </summary>
+[RequireComponent(typeof(Camera))]
+public class CameraController : MonoSingleton<CameraController> {
+	// TODO: Camera movement boundaries.
+	// TODO: Moving Camera using mouse.
 
-	void Update () {
-		Vector3 cameraMovemet = new Vector3();
-		if (Input.GetKey ("w") || (Input.mousePosition.y >= Screen.height - panBorderThikness && borderPan))
-			cameraMovemet.z += 1;
-		if (Input.GetKey ("s") || (Input.mousePosition.y <= panBorderThikness && borderPan))
-			cameraMovemet.z -= 1;
-		if (Input.GetKey ("a") || (Input.mousePosition.x < panBorderThikness && borderPan))
-			cameraMovemet.x -= 1;
-		if (Input.GetKey ("d") || (Input.mousePosition.x >= Screen.width - panBorderThikness && borderPan))
-			cameraMovemet.x += 1;
-		cameraMovemet.Normalize ();
-		cameraMovemet *= panSpeed * Time.deltaTime;
-		float scroll = Input.GetAxis ("Mouse ScrollWheel");
-		cameraMovemet.y = -scroll * scrollSpeed * Time.deltaTime;
+	[SerializeField]
+	float cameraSpeed = 20f;
+	[SerializeField]
+	float scrollSpeed = 500f;
+	[SerializeField]
+	Vector2 scrollLimit = new Vector2(10, 50);
 
-		Vector3 cameraPosition = transform.position+cameraMovemet;
-		cameraPosition.x = Mathf.Clamp (cameraPosition.x, panLimit.x, panLimit.width);
-		cameraPosition.z = Mathf.Clamp (cameraPosition.z, panLimit.y, panLimit.height);
-		cameraPosition.y = Mathf.Clamp (cameraPosition.y, scrollLimit.x, scrollLimit.y);
-		transform.position = cameraPosition;
+	protected CameraController(){}
+
+	void Start(){
+		CameraController test = Instance; // Test that there is only one CameraController component in scene.
+	}
+
+	void Update(){
+		var cameraMovement = new Vector3 (Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+		cameraMovement.Normalize ();
+		cameraMovement *= cameraSpeed; // Y component is sill 0, so we can multiply.
+		cameraMovement.y = - Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+		Vector3 newCameraPosition = transform.position + cameraMovement * Time.deltaTime;
+		newCameraPosition.y = Mathf.Clamp (newCameraPosition.y, scrollLimit.x, scrollLimit.y);
+		transform.position = newCameraPosition;
 	}
 }

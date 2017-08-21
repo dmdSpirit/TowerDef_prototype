@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +7,21 @@ using UnityEngine;
 
 // TODO: Remake into singleton.
 public class GameController : MonoBehaviour {
+	// GameController handles now:
+	//					Events from units, spawners, towers
+	//					Selected Tower
+	//					OnTowerClicked event
+
+	// GameController should handle:
+	//					Game state
+	//					Events from units, spawners, towers
+
+
+
+
+
+
+
 	static public List<GameObject> unitsList;
 
 	List<Spawn> spawnersList;

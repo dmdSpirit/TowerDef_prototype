@@ -134,6 +134,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 380862274}
+  - {fileID: 801744662}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -323,7 +324,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4208886233930264, guid: 74b3fb11b7a68284caf455847c462579, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.18
       objectReference: {fileID: 0}
     - target: {fileID: 4208886233930264, guid: 74b3fb11b7a68284caf455847c462579, type: 2}
       propertyPath: m_LocalPosition.y
@@ -359,7 +360,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4208886233930264, guid: 74b3fb11b7a68284caf455847c462579, type: 2}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 7.4359937
       objectReference: {fileID: 0}
     - target: {fileID: 4208886233930264, guid: 74b3fb11b7a68284caf455847c462579, type: 2}
       propertyPath: m_LocalScale.z
@@ -408,6 +409,57 @@ Transform:
   m_Father: {fileID: 1394740018}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &746190672
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 36695569}
+    m_Modifications:
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -13.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.8074447
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.58994335
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -252.306
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8a86a2401fb330a4883baa4f089b6f4f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &801744662 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4621699642891064, guid: 8a86a2401fb330a4883baa4f089b6f4f,
+    type: 2}
+  m_PrefabInternal: {fileID: 746190672}
 --- !u!1 &1066622310
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +468,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1066622311}
+  - component: {fileID: 1066622312}
   m_Layer: 0
   m_Name: MouseController
   m_TagString: Untagged
@@ -437,6 +490,20 @@ Transform:
   m_Father: {fileID: 1394740018}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1066622312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1066622310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc74dbc6378f34e4eb77d77d8b70eb43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickable:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1081990138
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,10 +514,7 @@ GameObject:
   - component: {fileID: 1081990143}
   - component: {fileID: 1081990142}
   - component: {fileID: 1081990141}
-  - component: {fileID: 1081990140}
-  - component: {fileID: 1081990139}
   - component: {fileID: 1081990144}
-  - component: {fileID: 1081990145}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -458,20 +522,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1081990139
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1081990138}
-  m_Enabled: 1
---- !u!124 &1081990140
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1081990138}
-  m_Enabled: 1
 --- !u!92 &1081990141
 Behaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +572,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081990138}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 15, z: -12}
+  m_LocalPosition: {x: -0.12, y: 30, z: -26.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -539,31 +589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f600782b6cedf2544bb4474666454faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  borderPan: 0
-  panSpeed: 20
-  panBorderThikness: 15
-  scrollSpeed: 300
-  panLimit:
-    serializedVersion: 2
-    x: -13
-    y: -27
-    width: 12
-    height: 8
-  scrollLimit: {x: 4, y: 15}
---- !u!114 &1081990145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1081990138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc74dbc6378f34e4eb77d77d8b70eb43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isClickable:
-    serializedVersion: 2
-    m_Bits: 512
+  cameraSpeed: 20
+  scrollSpeed: 500
+  scrollLimit: {x: 10, y: 50}
 --- !u!1 &1287215170
 GameObject:
   m_ObjectHideFlags: 0
