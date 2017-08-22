@@ -4,9 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Game controller. Handles units list.
 /// </summary>
-
-// TODO: Remake into singleton.
-public class GameController : MonoBehaviour {
+public class GameController : MonoSingleton<GameController> {
 	// GameController handles now:
 	//					Events from units, spawners, towers
 	//					Selected Tower
@@ -16,12 +14,37 @@ public class GameController : MonoBehaviour {
 	//					Game state
 	//					Events from units, spawners, towers
 
+	private bool _gameIsRunning = true;
 
+	public bool GameIsRunning{
+		get {
+			return _gameIsRunning;
+		}
+		set{ 
+			if(_gameIsRunning != value){
+				// TODO: Register call to 'Game Paused' Event. Stop gameplay and show menu if _gameIsRunning == false.
+				_gameIsRunning = value;
+				mainMenu.SetActive (!value);
+			}
+		}
+	}
 
+	public GameObject mainMenu;
 
+	void Start(){
+		CheckIsSingleInScene ();
 
+		OldStart ();
 
+		// Check that everything is assigned so I won't have to check it every time.
+		if (mainMenu == null)
+			Debug.LogError ("[GameController] MainMenu is not assigned.");
 
+		// Start game in Paused condition.
+		GameIsRunning = false;
+	}
+
+	//-	------------- OLD
 	static public List<GameObject> unitsList;
 
 	List<Spawn> spawnersList;
@@ -32,7 +55,8 @@ public class GameController : MonoBehaviour {
 	MouseController mouseController;
 
 	// FIXME: Becoming way too big, refactor.
-	void Start(){
+	void OldStart(){
+
 		unitsList = new List<GameObject> ();
 		spawnersList = new List<Spawn> ();
 		towersList = new List<TowerController> ();

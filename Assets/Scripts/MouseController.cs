@@ -1,19 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 /// <summary>
-/// Mouse controller. Handle mouse click.
+/// Mouse controller. Handle mouse clicking and zooming.
 /// </summary>
+public class MouseController : MonoSingleton<MouseController> {
 
-// TODO: Make singleton.
-public class MouseController : MonoBehaviour {
+	void Start(){
+		CheckIsSingleInScene ();
+	}
+
+	void Update(){
+		// Camera Zoom.
+		// FIXME: Deal with twitchy scroll.
+		CameraController.Instance.AddToCameraMovement (
+			new Vector3 (0, -Input.GetAxis ("Mouse ScrollWheel"), 0)
+		);
+
+		OldUpdate ();
+	}
+
+	//----- OLD
+
+
 	public LayerMask isClickable;
 
 	public event Action unselectEverything;
 
-	void Update () {
+	void OldUpdate () {
+
 		if(Input.GetButtonDown("Fire1")){
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit rayHit;

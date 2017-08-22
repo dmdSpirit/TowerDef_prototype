@@ -10,6 +10,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour {
 
 	private static bool applicationIsQuitting = false;
 
+	// This class by itself does not check that there is only one such component in scene.
+	// To check this child class has to manually get Instance.
+
 	public static T Instance{
 		get{
 			if(applicationIsQuitting){
@@ -50,7 +53,8 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour {
 					}
 					else {
 						Debug.Log ("[Singleton] Using instance already created: " +
-							_instance.gameObject.name);
+							_instance.gameObject.name + "::" +
+							typeof(T).ToString());
 					}
 				}
 				return _instance;
@@ -60,5 +64,9 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour {
 
 	public void OnDestroy(){
 		applicationIsQuitting = true;
+	}
+
+	protected void CheckIsSingleInScene(){
+		T test = Instance; // Test that there is only one T component in scene.
 	}
 }

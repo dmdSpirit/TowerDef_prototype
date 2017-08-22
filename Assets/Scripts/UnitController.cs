@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Unit death animation, unit behavior.
 /// </summary>
-
 [RequireComponent(typeof(Health))]
 public class UnitController : MonoBehaviour {
+
+	// ----- OLD
+
 	public Transform shootingTarget;
 
 	WalkToTarget walkToTarget;
