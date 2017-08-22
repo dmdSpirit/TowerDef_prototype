@@ -1,0 +1,24 @@
+TODO:
+	- Create roads.
+	- Place towers.
+	- Show HP of units.
+	- Show damage numbers.
+	- Show score.
+	- Create defete scene.
+	- Show HP of the house.
+	- Create 6 tower models.
+
+Code:
+	TODO:
+		CameraController
+			- Camera movement boundaries.
+			- Moving Camera using mouse.
+			- Zoom towards mouse pointer.
+		GameController
+			- Register call to 'Game Paused' Event. Stop gameplay and show menu if _gameIsRunning == false.
+	FIXME:
+		MouseController
+			- Deal with twitchy scroll.
+			
+Ideas:
+

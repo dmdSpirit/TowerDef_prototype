@@ -3,7 +3,6 @@
 /// <summary>
 /// Base class for all MonoBehaviour singleton components.
 /// </summary>
-
 public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour {
 	private static T _instance;
 	private static object _lock = new object();
