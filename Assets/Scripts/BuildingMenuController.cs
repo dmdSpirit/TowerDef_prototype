@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingMenuController : MonoBehaviour {
+public class BuildingMenuController : MonoSingleton<BuildingMenuController> {
+	
+
+	//--------------------------- old
 	TowerController selectedTowerController;
 	GameObject buildingMenu;
 	Dictionary<Button,int> buildButtonsList;
 
 	// FIXME: Remove hardcoded coordinates.
-	public Vector3 defaultPosition;
+	//public Vector3 defaultPosition;
 
 	// TODO: Unselect Tower event.
 
@@ -28,9 +31,10 @@ public class BuildingMenuController : MonoBehaviour {
 	bool _showMenu;
 
 	void Start(){
+		CheckIsSingleInScene ();
 		buildButtonsList = new Dictionary<Button, int> ();
-		defaultPosition = new Vector3 (-3, 2.7f, -3);
-		Transform buildingMenuTransform = transform.Find("Building Menu");
+		//defaultPosition = new Vector3 (-3, 2.7f, -3);
+		Transform buildingMenuTransform = transform;
 		if(buildingMenuTransform == null)
 			Debug.LogError(gameObject.name +" :: Start - Could not find Building Menu child");
 		else{
@@ -55,15 +59,15 @@ public class BuildingMenuController : MonoBehaviour {
 		ShowMenu = true;
 
 		// Reposition Building Menu to the center of selected tower.
-		transform.SetParent(towerSelected.transform, false);
-		transform.localPosition = defaultPosition;
-		transform.localPosition += towerSelected.GetTowerCenter ();
+		//transform.SetParent(towerSelected.transform, false);
+		//transform.localPosition = defaultPosition;
+		//transform.localPosition += towerSelected.GetTowerCenter ();
 
 		// Reassign Buttons onClick.
 		foreach(KeyValuePair<Button, int> button in buildButtonsList){
 			button.Key.onClick.RemoveAllListeners ();
 			button.Key.onClick.AddListener (() => selectedTowerController.BuildTower (button.Value));
-			button.Key.onClick.AddListener (HideMenu);
+			//button.Key.onClick.AddListener (HideMenu);
 		}
 	}
 
@@ -72,7 +76,7 @@ public class BuildingMenuController : MonoBehaviour {
 		ShowMenu = false;
 		foreach (KeyValuePair<Button, int> button in buildButtonsList)
 			button.Key.onClick.RemoveAllListeners ();
-		transform.SetParent (null);
-		transform.position = defaultPosition;
+		//transform.SetParent (null);
+		//transform.position = defaultPosition;
 	}
 }

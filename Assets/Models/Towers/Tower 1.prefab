@@ -314,14 +314,14 @@ Projector:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772122762910980}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_NearClipPlane: 0.1
   m_FarClipPlane: 3
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1
-  m_OrthographicSize: 4
+  m_OrthographicSize: 6
   m_Material: {fileID: 2100000, guid: 065bbe8cccce94642a0413db6be3fc5e, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2

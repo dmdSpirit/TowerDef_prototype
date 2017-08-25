@@ -10,7 +10,8 @@ public class BulletController : MonoBehaviour {
 	void Update () {
 		// FIXME: Deal with bullets still flying towards destoryed unit.
 		if (target != null)
-			transform.position = Vector3.MoveTowards (transform.position, target.shootingTarget.position, Time.deltaTime * speed);
+			transform.position = Vector3.MoveTowards (transform.position, target.shootingTarget.position, 
+				Time.deltaTime * speed);
 		else
 			Destroy (gameObject);
 	}
@@ -22,7 +23,7 @@ public class BulletController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider unitCollider){
-		Debug.Log (gameObject.name + "::OnCollisionEnter");
+		//Debug.Log (gameObject.name + "::OnCollisionEnter");
 		if(unitCollider.gameObject.tag == "Enemy"){
 			Health enemyHealth = unitCollider.gameObject.GetComponent<Health> ();
 			if (enemyHealth != null)
@@ -31,7 +32,7 @@ public class BulletController : MonoBehaviour {
 	}
 
 	void DealDamage(Health enemyHealth){
-		Debug.Log(enemyHealth.gameObject.name+" was hit.");
+		//Debug.Log(enemyHealth.gameObject.name+" was hit.");
 		enemyHealth.TakeDamage (damage);
 		Destroy (gameObject);
 	}

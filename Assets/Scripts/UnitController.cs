@@ -32,7 +32,7 @@ public class UnitController : MonoBehaviour {
 			return;
 		}
 		// TODO: Add unit death animation.
-		Debug.Log(gameObject.name + " is dead.");
+		//Debug.Log(gameObject.name + " is dead.");
 		Destroy (gameObject);
 	}
 

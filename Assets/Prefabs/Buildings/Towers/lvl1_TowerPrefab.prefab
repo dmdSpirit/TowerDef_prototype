@@ -380,9 +380,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a257661e00b9fc04ea0de4b39890a080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerModel: {fileID: 0}
-  t_towerModel0: {fileID: 0}
-  t_towerModel1: {fileID: 0}
+  _towerModel: {fileID: 1375314525784498}
+  t_towerModel0: {fileID: 1246469707315614, guid: bc967914ca4cfcb4383bb775537447cb,
+    type: 2}
+  t_towerModel1: {fileID: 1549623743864288, guid: b02778cefa8a3ca49b7ca4ff7d1219b9,
+    type: 2}
 --- !u!114 &114609313670972000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,7 +408,7 @@ Projector:
   m_Enabled: 0
   serializedVersion: 2
   m_NearClipPlane: 0.1
-  m_FarClipPlane: 3
+  m_FarClipPlane: 5
   m_FieldOfView: 60
   m_AspectRatio: 1
   m_Orthographic: 1

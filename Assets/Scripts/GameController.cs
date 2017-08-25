@@ -87,7 +87,7 @@ public class GameController : MonoSingleton<GameController> {
 
 		// Get buildingMenuController
 		// TODO: Make buildingMenuController singleton.
-		GameObject buildingMenuGO = GameObject.FindGameObjectWithTag("UI");
+		GameObject buildingMenuGO = BuildingMenuController.Instance.gameObject;
 		if(buildingMenuGO == null)
 			Debug.LogError(gameObject.name+" :: Start - Could not find Building Menu");
 		else{
