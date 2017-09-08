@@ -6,8 +6,14 @@
 [RequireComponent(typeof(Health))]
 public class UnitController : MonoBehaviour {
 
+	void Update(){
+		if (Input.GetKeyDown (KeyCode.J))
+			animator.SetTrigger ("Death");
+	}
+
 	// ----- OLD
 
+	Animator animator;
 	public Transform shootingTarget;
 
 	WalkToTarget walkToTarget;
@@ -24,6 +30,8 @@ public class UnitController : MonoBehaviour {
 		walkToTarget = GetComponent<WalkToTarget>();
 		if (walkToTarget != null)
 			walkToTarget.onFinish += OnFinish;
+
+		animator = GetComponent<Animator> ();
 	}
 
 	public void OnUnitDeath(GameObject deadUnitGO){

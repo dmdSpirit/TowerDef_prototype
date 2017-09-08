@@ -10,6 +10,7 @@ public class KeyboardController : MonoSingleton<KeyboardController> {
 		// Pressing 'Esc' pauses/unpauses the game.
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			GameController.Instance.GameIsRunning = ! GameController.Instance.GameIsRunning;
+
 		}
 
 		// Camera movement.
