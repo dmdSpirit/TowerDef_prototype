@@ -161,6 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingTarget: {fileID: 4530352131665112}
+  deathAnimationLength: 5
+  corpseHideSpeed: 4
 --- !u!114 &114191261110773426
 MonoBehaviour:
   m_ObjectHideFlags: 1

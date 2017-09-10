@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour {
 
 	void Update () {
 		// FIXME: Deal with bullets still flying towards destoryed unit.
-		if (target != null)
+		if (target != null && target.isAlive)
 			transform.position = Vector3.MoveTowards (transform.position, target.shootingTarget.position, 
 				Time.deltaTime * speed);
 		else

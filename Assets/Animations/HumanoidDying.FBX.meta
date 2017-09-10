@@ -118,7 +118,7 @@ ModelImporter:
     400108: //RootNode
     400110: Exporter
     4300000: RPG-Character-Mesh
-    7400000: Unarmed-Death1
+    7400000: HumanoidDying
     9500000: //RootNode
     13700000: RPG-Character-Mesh
   materials:
@@ -164,7 +164,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Unarmed-Death1
+      name: HumanoidDying
       takeName: Take 001
       firstFrame: 0
       lastFrame: 39
@@ -190,6 +190,8 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
+      - path: Exporter
+        weight: 0
       - path: Motion
         weight: 1
       - path: Motion/B_Pelvis
@@ -295,8 +297,6 @@ ModelImporter:
       - path: Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4/B_R_Finger41
         weight: 1
       - path: Motion/B_Pelvis/B_Spine/B_Spine1/B_Spine2/B_R_Clavicle/B_R_UpperArm/B_R_Forearm/B_R_Hand/B_R_Finger4/B_R_Finger41/B_R_Finger42
-        weight: 1
-      - path: RPG-Character-Mesh
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

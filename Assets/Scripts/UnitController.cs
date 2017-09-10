@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.AI;
 
 /// <summary>
 /// Unit death animation, unit behavior.
@@ -6,15 +8,17 @@
 [RequireComponent(typeof(Health))]
 public class UnitController : MonoBehaviour {
 
-	void Update(){
-		if (Input.GetKeyDown (KeyCode.J))
-			animator.SetTrigger ("Death");
-	}
 
 	// ----- OLD
 
 	Animator animator;
 	public Transform shootingTarget;
+	[SerializeField]
+	float deathAnimationLength = 5;
+	[SerializeField]
+	float corpseHideSpeed = 1f;
+
+	public bool isAlive = true;
 
 	WalkToTarget walkToTarget;
 
@@ -35,13 +39,16 @@ public class UnitController : MonoBehaviour {
 	}
 
 	public void OnUnitDeath(GameObject deadUnitGO){
+		if (isAlive == false)
+			return;
 		if(deadUnitGO != gameObject){
 			Debug.LogError(gameObject.name + " :: OnUnitDeath - Got death event from other unit.");
 			return;
 		}
 		// TODO: Add unit death animation.
 		//Debug.Log(gameObject.name + " is dead.");
-		Destroy (gameObject);
+		//Destroy (gameObject);
+		StartCoroutine("DeathAnimation");
 	}
 
 	void OnFinish(GameObject finishedGameObject){
@@ -50,5 +57,29 @@ public class UnitController : MonoBehaviour {
 		OnUnitDeath (finishedGameObject);
 
 		// TODO: Implement damage to the core event.
+	}
+
+	IEnumerator DeathAnimation(){
+		//GetComponent<Health> ().enabled = false;
+		isAlive = false;
+		walkToTarget.IsMoving = false;
+		GetComponent<NavMeshAgent> ().radius = 0;
+		GetComponent<Collider> ().enabled = false;
+		animator.SetTrigger ("Death");
+		yield return new WaitForSeconds(deathAnimationLength);
+		//Destroy (GetComponent<Rigidbody> ());
+		//StartCoroutine ("HideCorpse");
+		Destroy (gameObject);
+	}
+
+	IEnumerator HideCorpse(){
+		Vector3 corpseMovement = new Vector3 (0, corpseHideSpeed, 0);
+		float timePassed = 0;
+		while(timePassed<deathAnimationLength){
+			transform.position -= corpseMovement * corpseHideSpeed*Time.deltaTime;
+			timePassed += Time.deltaTime;
+			yield return null;
+		}
+		Destroy (gameObject);
 	}
 }

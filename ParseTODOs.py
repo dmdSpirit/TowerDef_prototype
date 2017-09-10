@@ -22,15 +22,15 @@ def parseFile( path, todos):
                 if className not in todos['FIXME:']:
                     todos['FIXME:'][className] = []
                 todos['FIXME:'][className].append(result.group(2))
-	f.close()
+    f.close()
 
 def printToDOs( k, todos, fw):
     if todos[k]:
-        fw.write('\t'+k+'\n')
+        fw.write('\t'+k+'\n\n')
         for key in todos[k]:
             fw.write('\t\t'+key+'\n')
             for line in todos[k][key]:
-                fw.write('\t\t\t'+line+'\n')
+                fw.write('\t\t\t- [ ] '+line+'\n')
 
 def parseAllFiles(todos):
     for subdir, dirs, files in os.walk(os.getcwd()+'\Assets'):
@@ -57,6 +57,7 @@ def writeTODOFile( todos):
     for line in fl:
         fw.write(line)
         if line.lower() == '*code:\n':
+            fw.write('\n')
             printToDOs('TODO:',todos,fw)
             printToDOs('FIXME:',todos,fw)
     fw.close()

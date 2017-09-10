@@ -16,7 +16,7 @@ public class WalkToTarget : MonoBehaviour {
 	Vector3 oldVelocity;
 	NavMeshAgent nmAgent;
 
-	bool IsMoving {
+	public bool IsMoving {
 		get{
 			return _isMoving;
 		}
@@ -35,7 +35,8 @@ public class WalkToTarget : MonoBehaviour {
 
 	void Update(){
 		// Stop moving if the game is paused.
-		IsMoving = GameController.Instance.GameIsRunning;
+		// FIXME: Remove isMoving check from WalkToTarget.
+		//IsMoving = GameController.Instance.GameIsRunning;
 
 		// Fire finish event if object reached its lastDestinationGO, is walking and lastDestinationGO != null.
 		if (IsMoving && lastDestinationGO != null &&
@@ -44,6 +45,8 @@ public class WalkToTarget : MonoBehaviour {
 			if (onFinish != null)
 				onFinish (gameObject);
 		}
+		if(IsMoving == false)
+			nmAgent.velocity = new Vector3();
 	}
 
 	void InitializeMovement(){
@@ -70,6 +73,8 @@ public class WalkToTarget : MonoBehaviour {
 		else{
 			oldVelocity = nmAgent.velocity;
 			nmAgent.SetDestination (transform.position);
+			nmAgent.velocity = new Vector3();
+			GetComponent<Rigidbody> ().velocity = new Vector3 ();
 		}
 	}
 }

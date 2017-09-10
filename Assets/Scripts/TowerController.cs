@@ -44,7 +44,7 @@ public class TowerController : MonoBehaviour {
 	}
 
 	void Update(){
-		if(target == null){
+		if(target == null || target.GetComponent<UnitController>().isAlive == false){
 			target = GetTarget();
 		}
 		else{
@@ -68,7 +68,7 @@ public class TowerController : MonoBehaviour {
 		}
 		foreach(GameObject enemyUnit in GameController.unitsList){
 			float newDistance = Vector3.Distance (transform.position, enemyUnit.transform.position);
-			if( newDistance <= distance){
+			if( newDistance <= distance && enemyUnit.GetComponent<UnitController>().isAlive){
 				newTarget = enemyUnit;
 				distance = newDistance;
 			}

@@ -23,6 +23,10 @@ public class GameController : MonoSingleton<GameController> {
 		set{ 
 			if(_gameIsRunning != value){
 				// TODO: Register call to 'Game Paused' Event. Stop gameplay and show menu if _gameIsRunning == false.
+				if (value)
+					Time.timeScale = 1;
+				else
+					Time.timeScale = 0;
 				_gameIsRunning = value;
 				mainMenu.SetActive (!value);
 			}
