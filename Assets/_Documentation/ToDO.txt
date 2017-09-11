@@ -76,5 +76,7 @@ TODO:
 			- [ ] Refactor me.
 			- [ ] Fix collider size when object is rotated.
 			- [ ] Bounds not doing good. May be depent on the fact it is alway box collider and just code the calculation.
+		WalkToTarget
+			- [ ] Remove isMoving check from WalkToTarget.
 *Code
 end

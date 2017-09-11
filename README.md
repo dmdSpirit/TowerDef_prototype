@@ -8,13 +8,10 @@
 - 3 levels
 - 6 towers (2 types + 2 upgrades each)
 
-![Alt text](/Screenshots/Screenshot.jpg?raw=true "Screenshot")
-
-![Alt text](/Screenshots/Turret.jpg?raw=true "Turret")
+![Alt text](/Screenshots/video.gif?raw=true "Gameplay")
 
 ![Alt text](/Screenshots/Peasant.jpg?raw=true "Peasant")
 
-Turret created following steps from [Youtube Tutorial](https://www.youtube.com/watch?v=OhhYOTa-W_s).
 
 ### Current TODO:
 TODO:
@@ -22,6 +19,12 @@ TODO:
 	- [x] Fix building menu.
 	- [x] Fix tower prefab.
 	- [x] Create roads.
+	- [x] Fix HumanoidDying animation.
+	- [x] Pause running animation.
+	- [x] Pause spawn.
+	- [x] Add dying coroutine.
+	- [ ] Pause mouse controller.
+	- [ ] Pause building menu.
 	- [ ] Show which tower is selected.
 	- [ ] Place towers.
 	- [ ] Show HP of units.
@@ -30,17 +33,18 @@ TODO:
 	- [ ] Create defeat scene.
 	- [ ] Show HP of the house.
 	- [ ] Create 6 tower models.
-	- [ ] Pause spawn.
-	- [ ] Pause mouse controller.
 	- [ ] Controll building menu with keyboard.
 	- [ ] Create 'bullet pool'
 	- [ ] Unselect by rightclicking.
-	- [ ] Pause building menu.
+	- [ ] Refactor code.
+	- [ ] Add torches and forks.
+	- [ ] Create new mesh for the road.
+	- [ ] Add trees.
 
 *Code:
 
 	TODO:
-	
+
 		BuildingMenuController
 			- [ ] Unselect Tower event.
 		CameraController
@@ -65,6 +69,7 @@ TODO:
 			- [ ] Add unit death animation.
 			- [ ] Implement damage to the core event.
 	FIXME:
+
 		BuildingMenuController
 			- [ ] Remove hardcoded coordinates.
 			- [ ] Hide Building Menu when no towers seleted.
@@ -86,6 +91,8 @@ TODO:
 			- [ ] Refactor me.
 			- [ ] Fix collider size when object is rotated.
 			- [ ] Bounds not doing good. May be depent on the fact it is alway box collider and just code the calculation.
+		WalkToTarget
+			- [ ] Remove isMoving check from WalkToTarget.
 *Code
 
 
