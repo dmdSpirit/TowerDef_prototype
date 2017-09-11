@@ -2645,34 +2645,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4777699005199566, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 184.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777699005199566, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.93407696
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777699005199566, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.9340764
-      objectReference: {fileID: 0}
-    - target: {fileID: 4777699005199566, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.93407696
-      objectReference: {fileID: 0}
-    - target: {fileID: 1972010102322378, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1330568562024546, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026599075985306, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc9b5bbfd3ad8f41b4e411ac85332cb, type: 2}
   m_IsPrefabParent: 0

@@ -23,6 +23,8 @@ TODO:
 	- [x] Pause running animation.
 	- [x] Pause spawn.
 	- [x] Add dying coroutine.
+	- [x] Create new mesh for the road.
+	- [x] Add torches.
 	- [ ] Pause mouse controller.
 	- [ ] Pause building menu.
 	- [ ] Show which tower is selected.
@@ -37,8 +39,7 @@ TODO:
 	- [ ] Create 'bullet pool'
 	- [ ] Unselect by rightclicking.
 	- [ ] Refactor code.
-	- [ ] Add torches and forks.
-	- [ ] Create new mesh for the road.
+	- [ ] Add forks.
 	- [ ] Add trees.
 
 *Code:

@@ -19,6 +19,10 @@ public class UnitController : MonoBehaviour {
 	float corpseHideSpeed = 1f;
 
 	public bool isAlive = true;
+	bool hasTorch;
+
+	public GameObject torchPrefab;
+	// finger1_R
 
 	WalkToTarget walkToTarget;
 
@@ -36,6 +40,11 @@ public class UnitController : MonoBehaviour {
 			walkToTarget.onFinish += OnFinish;
 
 		animator = GetComponent<Animator> ();
+
+		Random.InitState ((int)System.DateTime.Now.Ticks);
+		hasTorch = Random.value >= 0.5;
+		if (hasTorch)
+			CreateTorch ();
 	}
 
 	public void OnUnitDeath(GameObject deadUnitGO){
@@ -81,5 +90,14 @@ public class UnitController : MonoBehaviour {
 			yield return null;
 		}
 		Destroy (gameObject);
+	}
+
+	void CreateTorch(){
+		Transform wristTransform;
+		Vector3 torchPosiiton;
+		wristTransform = transform.Find ("finger2_L");
+		torchPosiiton = new Vector3 (0.001f, 0.115f, 0.057f);
+		GameObject torch = Instantiate (torchPrefab, wristTransform);
+		torch.transform.localPosition = torchPosiiton;
 	}
 }
