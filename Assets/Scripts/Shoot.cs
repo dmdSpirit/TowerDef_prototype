@@ -8,7 +8,8 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour {
 	public GameObject bulletPrefab; // FIXME: Set by controlling script.
-	public float shootingCD = 0.2f;
+	[SerializeField]
+	float shootingCD = 0.2f;
 	public float bulletDamage = 1f;
 	public float bulletSpeed = 6f;
 
@@ -17,9 +18,6 @@ public class Shoot : MonoBehaviour {
 
 	void Start(){
 		timePassed = 0;
-		shootingCD = 0.2f;
-		bulletDamage = 1f;
-		bulletSpeed = 8f;
 		towerController = GetComponent<TowerController> ();
 	}
 
