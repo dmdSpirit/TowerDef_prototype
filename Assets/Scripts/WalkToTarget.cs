@@ -45,8 +45,8 @@ public class WalkToTarget : MonoBehaviour {
 			if (onFinish != null)
 				onFinish (gameObject);
 		}
-		if(IsMoving == false)
-			nmAgent.velocity = new Vector3();
+		if (IsMoving == false) 
+			nmAgent.velocity = new Vector3 ();
 	}
 
 	void InitializeMovement(){
@@ -74,7 +74,7 @@ public class WalkToTarget : MonoBehaviour {
 			oldVelocity = nmAgent.velocity;
 			nmAgent.SetDestination (transform.position);
 			nmAgent.velocity = new Vector3();
-			GetComponent<Rigidbody> ().velocity = new Vector3 ();
+			//GetComponent<Rigidbody> ().velocity = new Vector3 ();
 		}
 	}
 }

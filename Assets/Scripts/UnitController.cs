@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using System;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Unit death animation, unit behavior.
@@ -20,9 +22,10 @@ public class UnitController : MonoBehaviour {
 
 	public bool isAlive = true;
 	bool hasTorch;
+	bool hasFork;
 
 	public GameObject torchPrefab;
-	// finger1_R
+	public GameObject forkPrefab;
 
 	WalkToTarget walkToTarget;
 
@@ -43,8 +46,8 @@ public class UnitController : MonoBehaviour {
 
 		Random.InitState ((int)System.DateTime.Now.Ticks);
 		hasTorch = Random.value >= 0.5;
-		if (hasTorch)
-			CreateTorch ();
+		hasFork = Random.value >= 0.7;
+		CreateItems (unitHealth);
 	}
 
 	public void OnUnitDeath(GameObject deadUnitGO){
@@ -72,8 +75,8 @@ public class UnitController : MonoBehaviour {
 		//GetComponent<Health> ().enabled = false;
 		isAlive = false;
 		walkToTarget.IsMoving = false;
-		GetComponent<NavMeshAgent> ().radius = 0;
-		GetComponent<Collider> ().enabled = false;
+		walkToTarget.enabled = false;
+		GetComponent<NavMeshAgent> ().enabled = false;
 		animator.SetTrigger ("Death");
 		yield return new WaitForSeconds(deathAnimationLength);
 		//Destroy (GetComponent<Rigidbody> ());
@@ -92,12 +95,20 @@ public class UnitController : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	void CreateTorch(){
+	void CreateItems(Health unitHealth){
 		Transform wristTransform;
-		Vector3 torchPosiiton;
-		wristTransform = transform.Find ("finger2_L");
-		torchPosiiton = new Vector3 (0.001f, 0.115f, 0.057f);
-		GameObject torch = Instantiate (torchPrefab, wristTransform);
-		torch.transform.localPosition = torchPosiiton;
+		if (hasTorch) {
+			Vector3 torchPosiiton;
+			wristTransform = transform.Find ("finger2_L");
+			torchPosiiton = new Vector3 (0.001f, 0.115f, 0.057f);
+			GameObject torch = Instantiate (torchPrefab, wristTransform);
+			torch.transform.localPosition = torchPosiiton;
+			unitHealth.OnDeath += torch.GetComponent<ItemController> ().OnCharacterDeath;
+		}
+		if(hasFork){
+			wristTransform = transform.Find ("finger2_R");
+			GameObject fork = Instantiate (forkPrefab, wristTransform);
+			unitHealth.OnDeath += fork.GetComponent<ItemController> ().OnCharacterDeath;
+		}
 	}
 }
