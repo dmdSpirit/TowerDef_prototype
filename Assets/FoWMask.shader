@@ -4,18 +4,19 @@
 		_MainTex("Base (RGB)", 2D) = "white" {}
 	}
 	SubShader {
-		Tags { "RenderType" = "Transparent" "LightMode" = "ForwardBase"}
+		Tags { "Queue" = "Transparent" "RenderType" = "Transparent" "LightMode" = "ForwardBase"}
 		Blend SrcAlpha OneMinusSrcAlpha
+		Lighting Off
 		LOD 200
 
 		CGPROGRAM
-		#pragma surface surf NoLighting Lambert noambient
-		Lighting LightingNoLighting(SurfaceOutput s, fixed3 lightDir, float aten){
+		#pragma surface surf NoLighting noambient
+
+		fixed4 LightingNoLighting(SurfaceOutput s, fixed3 lightDir, float aten){
 			fixed4 color;
 			color.rgb = s.Albedo;
 			color.a = s.Alpha;
 			return color;
-
 		}
 
 		fixed4 _Color;
@@ -27,8 +28,8 @@
 
 		void surf (Input IN, inout SurfaceOutput o){
 			half4 baseColor = tex2D (_MainTex, IN.uv_MainTex);
-			o.Albedo = baseColor.rgb;
-			o.Alpha = _Color.a - baseColor.g;
+			o.Albedo =  _Color.rgb * baseColor.b;
+			o.Alpha = 1 - baseColor.g;
 		}
 		ENDCG
 	}
