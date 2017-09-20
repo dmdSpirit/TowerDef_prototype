@@ -8,14 +8,23 @@ using System;
 /// </summary>
 
 public class Health : MonoBehaviour {
-	public float health = 3f;
+	[SerializeField]
+	HPBarController hpBar;
+
+	public int health = 3;
 
 	public event Action<GameObject> OnDeath;
 
-	public void TakeDamage(float damage){
-		health = Mathf.Max (0, health - damage);
+	void Start(){
+		hpBar.InitHP (health);
+	}
 
-		if (health == 0 && OnDeath != null)
-			OnDeath(gameObject);
+	public void TakeDamage(int damage){
+		health = Mathf.Max (0, health - damage);
+		hpBar.currentHP = health;
+		if (health == 0 && OnDeath != null) {
+			OnDeath (gameObject);
+			hpBar.gameObject.SetActive (false);
+		}
 	}
 }

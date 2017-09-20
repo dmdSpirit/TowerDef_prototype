@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider))]
 public class ItemController : MonoBehaviour {
 	Rigidbody rigidbidy;
-	BoxCollider collider;
+	new BoxCollider collider;
 	GameObject character;
 
 	bool isDead = false;

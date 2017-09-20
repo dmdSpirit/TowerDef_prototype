@@ -10,7 +10,7 @@ public class Shoot : MonoBehaviour {
 	public GameObject bulletPrefab; // FIXME: Set by controlling script.
 	[SerializeField]
 	float shootingCD = 0.2f;
-	public float bulletDamage = 1f;
+	public int bulletDamage = 1;
 	public float bulletSpeed = 6f;
 
 	float timePassed;

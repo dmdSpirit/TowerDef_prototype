@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour {
 	float speed;
 	UnitController target;
-	float damage;
+	int damage;
 
 	void Update () {
 		// FIXME: Deal with bullets still flying towards destoryed unit.
@@ -16,7 +16,7 @@ public class BulletController : MonoBehaviour {
 			Destroy (gameObject);
 	}
 
-	public void Init(UnitController target, float speed, float damage){
+	public void Init(UnitController target, float speed, int damage){
 		this.target = target;
 		this.speed = speed;
 		this.damage = damage;
