@@ -10,7 +10,6 @@
 
 ![Alt text](/Screenshots/video.gif?raw=true "Gameplay")
 
-![Alt text](/Screenshots/Peasant.jpg?raw=true "Peasant")
 
 
 ### Current TODO:
