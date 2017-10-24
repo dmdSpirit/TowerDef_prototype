@@ -99,4 +99,4 @@ TODO:
 ### Some ideas to try:
 - Kingdom Rush mechanics (clone?)
 
-# No updates comming soon. Im ill
+# No updates coming soon. Im ill
