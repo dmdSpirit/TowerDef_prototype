@@ -98,3 +98,5 @@ TODO:
 
 ### Some ideas to try:
 - Kingdom Rush mechanics (clone?)
+
+# No updates comming soon. Im ill
